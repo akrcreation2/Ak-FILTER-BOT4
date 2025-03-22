@@ -1,7 +1,7 @@
 if [ -z $UPSTREAM_REPO ]
 then
   echo "Cloning main Repository"
-  git clone https://github.com/mn-bots/shobanafilterbot.git /shobanafilterbot
+  git clone https://github.com/akrcreation2/Ak-FILTER-BOT4.git /shobanafilterbot
 else
   echo "Cloning Custom Repo from $UPSTREAM_REPO "
   git clone $UPSTREAM_REPO /shobanafilterbot
