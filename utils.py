@@ -1,6 +1,6 @@
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM
+from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORTLINK_API, SHORTLINK_URL, VERIFY_SHORTLINK_API, VERIFY_SHORTLINK_URL, VERIFY_SND_SHORTLINK_API, VERIFY_SND_SHORTLINK_URL
 from imdb import IMDb
 import asyncio
 from pyrogram.types import Message, InlineKeyboardButton
@@ -22,8 +22,10 @@ BTN_URL_REGEX = re.compile(
 )
 
 imdb = IMDb() 
-
+TOKENS = {}
+VERIFIED = {}
 BANNED = {}
+SECOND_SHORTENER = {}
 SMART_OPEN = '“'
 SMART_CLOSE = '”'
 START_CHAR = ('\'', '"', SMART_OPEN)
@@ -38,6 +40,7 @@ class temp(object):
     MELCOW = {}
     U_NAME = None
     B_NAME = None
+    SHORT = {}
     SETTINGS = {}
 
 async def is_subscribed(bot, query):
