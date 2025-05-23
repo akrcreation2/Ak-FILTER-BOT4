@@ -1,6 +1,6 @@
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORTLINK_API, SHORTLINK_URL, VERIFY_SHORTLINK_API, VERIFY_SHORTLINK_URL
+from info import *
 from imdb import IMDb
 import asyncio
 from pyrogram.types import Message, InlineKeyboardButton
@@ -13,7 +13,7 @@ from typing import List
 from database.users_chats_db import db
 from bs4 import BeautifulSoup
 import requests
-
+from datetime import datetime, date
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
@@ -22,8 +22,7 @@ BTN_URL_REGEX = re.compile(
 )
 
 imdb = IMDb() 
-TOKENS = {}
-VERIFIED = {}
+
 BANNED = {}
 SMART_OPEN = '“'
 SMART_CLOSE = '”'
@@ -39,7 +38,6 @@ class temp(object):
     MELCOW = {}
     U_NAME = None
     B_NAME = None
-    SHORT = {}
     SETTINGS = {}
 
 async def is_subscribed(bot, query):
@@ -378,11 +376,7 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
-async def get_clone_shortlink(link, url, api):
-    shortzy = Shortzy(api_key=api, base_site=url)
-    link = await shortzy.convert(link)
-    return link
-                           
+
 async def get_shortlink(chat_id, link):
     settings = await get_settings(chat_id) #fetching settings for group
     if 'shortlink' in settings.keys():
@@ -497,5 +491,3 @@ async def check_verification(bot, userid):
             return True
     else:
         return False
-
-
