@@ -13,7 +13,7 @@ def is_enabled(value, default):
     else:
         return default
 
-VERIFY = bool(environ.get('VERIFY', True))
+VERIFY = True
 VERIFY_SHORTLINK_URL = environ.get('VERIFY_SHORTLINK_URL', '')
 VERIFY_SHORTLINK_API = environ.get('VERIFY_SHORTLINK_API', '')
 VERIFY_TUTORIAL = environ.get('VERIFY_TUTORIAL', '')
