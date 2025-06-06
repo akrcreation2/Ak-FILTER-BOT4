@@ -475,6 +475,7 @@ async def verify_user(bot, userid, token):
     VERIFIED[user.id] = str(today)
 
 async def check_verification(bot, userid):
+    await message.reply(script.START_TXT.format('checking verify')
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
