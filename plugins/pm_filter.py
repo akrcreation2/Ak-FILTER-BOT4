@@ -64,7 +64,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"✨[{get_size(file.file_size)}] ➵ {file.file_name}", url=f"https://t.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    text=f"✨[{get_size(file.file_size)}] ➵ {file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
             ]
             for file in files
@@ -73,11 +73,11 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"✨{file.file_name}", url=f"https://t.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    text=f"✨{file.file_name}", callback_data=f'files#{file.file_id}'
                 ),
                 InlineKeyboardButton(
                     text=f"✨{get_size(file.file_size)}",
-                    url=f"https://t.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    callback_data=f'files_#{file.file_id}',
                 ),
             ]
             for file in files
@@ -358,12 +358,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
                 return
             else:
-                await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=file_id,
-                    caption=f_caption,
-                    protect_content=True if ident == "filep" else False 
-                )
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !', show_alert=True)
         except PeerIdInvalid:
@@ -393,12 +389,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if f_caption is None:
             f_caption = f"{title}"
         await query.answer()
-        await client.send_cached_media(
-            chat_id=query.from_user.id,
-            file_id=file_id,
-            caption=f_caption,
-            protect_content=True if ident == 'checksubp' else False
-        )
+        await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+        
     elif query.data == "pages":
         await query.answer()
 #ALERT FN IN SPELL CHECK FOR LANGAUGES TO KNOW HOW TO TYPE MOVIES esp english spell check goto adv spell check to check donot change the codes      
@@ -650,7 +642,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"✨[{get_size(file.file_size)}]--{file.file_name}", url=f"https://t.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    text=f"✨[{get_size(file.file_size)}]--{file.file_name}", callback_data=f'{pre}#{file.file_id}'
                 ),
             ]
             for file in files
@@ -660,11 +652,11 @@ async def auto_filter(client, msg, spoll=False):
             [
                 InlineKeyboardButton(
                     text=f"✨{file.file_name}",
-                    url=f"https://t.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    callback_data=f'{pre}#{file.file_id}',
                 ),
                 InlineKeyboardButton(
                     text=f"✨{get_size(file.file_size)}",
-                    url=f"https://t.me/{temp.U_NAME}?start=files_{file.file_id}"
+                    callback_data=f'{pre}#{file.file_id}',
                 ),
             ]
             for file in files
