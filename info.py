@@ -44,8 +44,8 @@ DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 #Token
-VAPI = environ.get("VAPI", "") # shortlink api
-VURL = environ.get("VURL", "") # shortlink domain without https://
+VERIFY_API = environ.get("VERIFY_API", "") # shortlink api
+VERIFY_URL = environ.get("VERIFY_URL", "") # shortlink domain without https://
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "") # how to open link 
 BOT_USERNAME = environ.get("BOT_USERNAME", "") # bot username without @
 VERIFY = environ.get("VERIFY", "True") # set True Or False and make sure spelling is correct and first letter capital.
