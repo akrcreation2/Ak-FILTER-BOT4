@@ -39,7 +39,6 @@ python-Levenshtein
 pyshorteners
 requests
 search_engine_parser
-shortzy
 speedtest>=0.0.1
 speedtest-cli
 telegraph
@@ -54,5 +53,7 @@ youtube-dl
 youtube-search
 youtube-search-python>=1.4.6
 ytthumb
+shortzy
+pytz
 git+https://github.com/agronholm/anyio
 git+https://github.com/Joelkb/cinemagoer
