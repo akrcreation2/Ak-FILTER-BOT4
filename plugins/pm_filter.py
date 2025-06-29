@@ -1,5 +1,4 @@
 # Kanged From @TroJanZheX
-#hyper link mode by mn-bots
 import asyncio
 import re
 import ast
@@ -68,33 +67,25 @@ async def next_page(bot, query):
         return
 
     settings = await get_settings(query.message.chat.id)
-
-    if HYPER_MODE:
-        cap_lines = []
-        for file in files:
-            file_link = f"https://t.me/{temp.U_NAME}?start=file_{file.file_id}"
-            cap_lines.append(f"📁 {get_size(file.file_size)} - [{file.file_name}]({file_link})")
-        cap_text = "\n".join(cap_lines)
-        btn = []
-    else:
-        if settings['button']:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"📂[{get_size(file.file_size)}] ➵ {file.file_name}", callback_data=f'files#{file.file_id}'
-                    ),
-                ]
-                for file in files
+    if settings['button']:Add commentMore actions
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"📂[{get_size(file.file_size)}] ➵ {file.file_name}", callback_data=f'files#{file.file_id}'
+                ),
             ]
-        else:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
-                    ),
-                    InlineKeyboardButton(
-                        text=f"{get_size(file.file_size)}", callback_data=f'files_#{file.file_id}'
-                    ),
+            for file in files
+        ]
+    else:
+        btn = [Add commentMore actions
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'files_#{file.file_id}',
+                ),
                 ]
                 for file in files
             ]
@@ -108,18 +99,14 @@ async def next_page(bot, query):
 
     if n_offset == 0:
         btn.append(
-            [
-                InlineKeyboardButton("◀️ BACK", callback_data=f"next_{req}_{key}_{off_set}"),
-                InlineKeyboardButton(f"📃 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages")
-            ]
+            [InlineKeyboardButton("◀️ BACK", callback_data=f"next_{req}_{key}_{off_set}"),Add commentMore actions
+             InlineKeyboardButton(f"📃 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
+                                  callback_data="pages")]
         )
     elif off_set is None:
         btn.append(
-            [
-                InlineKeyboardButton(f"📃 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),
-                InlineKeyboardButton("NEXT ▶️", callback_data=f"next_{req}_{key}_{n_offset}")
-            ]
-        )
+            [InlineKeyboardButton(f"📃 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),Add commentMore actions
+             InlineKeyboardButton("NEXT ▶️", callback_data=f"next_{req}_{key}_{n_offset}")])
     else:
         btn.append(
             [
@@ -130,17 +117,9 @@ async def next_page(bot, query):
         )
 
     try:
-        if HYPER_MODE:
-            await query.edit_message_text(
-                text=cap_text,
-                reply_markup=InlineKeyboardMarkup(btn),
-                parse_mode=enums.ParseMode.MARKDOWN,
-                disable_web_page_preview=True
-            )
-        else:
-            await query.edit_message_reply_markup(
-                reply_markup=InlineKeyboardMarkup(btn)
-            )
+        await query.edit_message_reply_markup(Add commentMore actions
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
     except MessageNotModified:
         pass
 
@@ -691,59 +670,41 @@ async def auto_filter(client, msg, spoll=False):
 
     pre = 'filep' if settings['file_secure'] else 'file'
 
-    if HYPER_MODE:
-        cap_lines = []
-        for file in files:
-            file_link = f"https://t.me/{temp.U_NAME}?start={pre}_{file.file_id}"
-            cap_lines.append(f"📁 {get_size(file.file_size)} - [{file.file_name}]({file_link})")
-        cap_text = "\n".join(cap_lines)
-
-        btn = []
-        if offset != "":
-            key = f"{message.chat.id}-{message.id}"
-            BUTTONS[key] = search
-            req = message.from_user.id if message.from_user else 0
-            btn.append([
-                InlineKeyboardButton(text=f"📃 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
-                InlineKeyboardButton(text="NEXT ▶️", callback_data=f"next_{req}_{key}_{offset}")
-            ])
-        else:
-            btn.append([InlineKeyboardButton(text="📃 1/1", callback_data="pages")])
+    if settings["button"]:Add commentMore actions
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"📂[{get_size(file.file_size)}]--{file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                ),
+            ]
+            for file in files
+        ]
     else:
-        if settings["button"]:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"📂[{get_size(file.file_size)}]--{file.file_name}", callback_data=f'{pre}#{file.file_id}'
-                    ),
-                ]
-                for file in files
-            ]
-        else:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"{file.file_name}",
-                        callback_data=f'{pre}#{file.file_id}',
-                    ),
-                    InlineKeyboardButton(
-                        text=f"{get_size(file.file_size)}",
-                        callback_data=f'{pre}#{file.file_id}',
-                    ),
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    callback_data=f'{pre}#{file.file_id}',Add commentMore actions
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    callback_data=f'{pre}#{file.file_id}',
+                ),
                 ]
                 for file in files
             ]
         if offset != "":
-            key = f"{message.chat.id}-{message.id}"
-            BUTTONS[key] = search
-            req = message.from_user.id if message.from_user else 0
-            btn.append([
-                InlineKeyboardButton(text=f"📃 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
-                InlineKeyboardButton(text="NEXT ▶️", callback_data=f"next_{req}_{key}_{offset}")
-            ])
-        else:
-            btn.append([InlineKeyboardButton(text="📃 1/1", callback_data="pages")])
-
+        key = f"{message.chat.id}-{message.id}"
+        BUTTONS[key] = search
+        req = message.from_user.id if message.from_user else 0
+        btn.append(
+            [InlineKeyboardButton(text=f"📃 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
+             InlineKeyboardButton(text="NEXT ▶️", callback_data=f"next_{req}_{key}_{offset}")]
+        )
+    else:
+        btn.append(
+            [InlineKeyboardButton(text="📃 1/1", callback_data="pages")]Add commentMore actions
+        )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
@@ -806,16 +767,7 @@ async def auto_filter(client, msg, spoll=False):
             await asyncio.sleep(300)
             await audel.delete()
     else:
-        if HYPER_MODE:
-            autodel = await message.reply_text(
-                cap_text,
-                reply_markup=InlineKeyboardMarkup(btn),
-                parse_mode=enums.ParseMode.MARKDOWN,
-                disable_web_page_preview=True
-            )
-        else:
-            autodel = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-
+        autodel = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
         await asyncio.sleep(300)
         await autodel.delete()
 
