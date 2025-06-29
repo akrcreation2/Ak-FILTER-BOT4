@@ -4,7 +4,7 @@ from pyrogram.errors.exceptions.bad_request_400 import QueryIdInvalid
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQuery
 from database.ia_filterdb import get_search_results
 from utils import is_subscribed, get_size, temp
-from info import CACHE_TIME, AUTH_USERS, CUSTOM_FILE_CAPTIONAdd commentMore actions
+from info import CACHE_TIME, AUTH_USERS, CUSTOM_FILE_CAPTION
 from utils import create_invite_links
 
 logger = logging.getLogger(__name__)
@@ -33,7 +33,7 @@ async def answer(bot, query):
 
     if not await is_subscribed(query.from_user.id, bot):
         invite_links = await create_invite_links(bot)
-        first_link = next(iter(invite_links.values()), None)Add commentMore actions
+        first_link = next(iter(invite_links.values()), None)
         
         if first_link:
             await query.answer(
@@ -121,6 +121,3 @@ def get_reply_markup(query):
         ]
         ]
     return InlineKeyboardMarkup(buttons)
-
-
-
