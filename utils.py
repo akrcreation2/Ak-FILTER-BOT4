@@ -3,7 +3,7 @@
 
 import logging, pytz, random, string
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, API, URL
+from info import LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, VAPI, VURL
 from imdb import IMDb
 import asyncio
 from pyrogram.types import Message, InlineKeyboardButton
@@ -427,7 +427,7 @@ def humanbytes(size):
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
 async def get_verify_shorted_link(link):
-    shortzy = Shortzy(api_key=API, base_site=URL)
+    shortzy = Shortzy(api_key=VAPI, base_site=VURL)
     link = await shortzy.convert(link)
     return link
 
