@@ -74,7 +74,7 @@ async def next_page(bot, query):
         cap_lines = []
         for file in files:
             file_link = f"https://t.me/{temp.U_NAME}?start=file_{file.file_id}"
-            cap_lines.append(f"✨ {get_size(file.file_size)} ➵ [{file.file_name}]({file_link})")
+            cap_lines.append(f"📁 {get_size(file.file_size)} - [{file.file_name}]({file_link})")
         cap_text = "\n".join(cap_lines)
         btn = []
     else:
@@ -82,7 +82,7 @@ async def next_page(bot, query):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"✨[{get_size(file.file_size)}] ➵ {file.file_name}", callback_data=f'files#{file.file_id}'
+                        text=f"📂[{get_size(file.file_size)}] ➵ {file.file_name}", callback_data=f'files#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -194,7 +194,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     "I'm not connected to any groups!\nCheck /connections or connect to any groups",
                     quote=True
                 )
-                return await query.answer('THIS IS A OPEN SOURCE PROJECT SEARCH IS IMPOSSIBLE')
+                return await query.answer('THIS IS A OPEN SOURCE PROJECT SEARCH IS IMPOSSIBLE ')
 
         elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
             grp_id = query.message.chat.id
@@ -437,8 +437,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #ALERT FN IN SPELL CHECK FOR LANGAUGES TO KNOW HOW TO TYPE MOVIES esp english spell check goto adv spell check to check donot change the codes      
     elif query.data == "esp":
         await query.answer(text=script.ENG_SPELL, show_alert="true")
-    elif query.data == "ksp":
-        await query.answer(text=script.KAN_SPELL, show_alert="true")    
     elif query.data == "msp":
         await query.answer(text=script.MAL_SPELL, show_alert="true")
     elif query.data == "hsp":
@@ -598,7 +596,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('ʙᴀᴄᴋ', callback_data='help'),
             InlineKeyboardButton('♻️', callback_data='rfrsh'),
-            InlineKeyboardButton('ʀᴇᴘᴏ', url='https://tg.me/knmlpro2')
+            InlineKeyboardButton('ʀᴇᴘᴏ', url='https://t.me/Knmlpro2')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
@@ -696,7 +694,7 @@ async def auto_filter(client, msg, spoll=False):
         cap_lines = []
         for file in files:
             file_link = f"https://t.me/{temp.U_NAME}?start={pre}_{file.file_id}"
-            cap_lines.append(f"✨ {get_size(file.file_size)} ➵ [{file.file_name}]({file_link})")
+            cap_lines.append(f"📁 {get_size(file.file_size)} - [{file.file_name}]({file_link})")
         cap_text = "\n".join(cap_lines)
 
         btn = []
@@ -715,7 +713,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"✨[{get_size(file.file_size)}]➵{file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                        text=f"📂[{get_size(file.file_size)}]--{file.file_name}", callback_data=f'{pre}#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -840,7 +838,6 @@ async def advantage_spell_chok(client, msg):
         logger.exception(e)
         reqst_gle = mv_rqst.replace(" ", "+")
         button = [[
-                 InlineKeyboardButton('KAN', 'ksp'),
                  InlineKeyboardButton('ENG', 'esp'),
                  InlineKeyboardButton('MAL', 'msp'),
                  InlineKeyboardButton('HIN', 'hsp'),
@@ -861,7 +858,6 @@ async def advantage_spell_chok(client, msg):
     if not movies:
         reqst_gle = mv_rqst.replace(" ", "+")
         button = [[
-                 InlineKeyboardButton('KAN', 'ksp'),
                  InlineKeyboardButton('ENG', 'esp'),
                  InlineKeyboardButton('MAL', 'msp'),
                  InlineKeyboardButton('HIN', 'hsp'),
