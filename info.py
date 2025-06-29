@@ -22,7 +22,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN', '')
 # Keep-Alive URL
 KEEP_ALIVE_URL = environ.get("KEEP_ALIVE_URL", "https://running-anderea-akrcreation2-fe4ff4d3.koyeb.app/")  # <-- Add this line
 #hyper link
-HYPER_MODE = bool(environ.get('HYPER_MODE', True))
+HYPER_MODE = bool(environ.get('HYPER_MODE', False))
 # Bot settings
 BOT_START_TIME = time()
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
@@ -42,6 +42,13 @@ AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 DATABASE_URI = environ.get('DATABASE_URI', "")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
+
+#Token
+API = environ.get("API", "") # shortlink api
+URL = environ.get("URL", "") # shortlink domain without https://
+VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "") # how to open link 
+BOT_USERNAME = environ.get("BOT_USERNAME", "") # bot username without @
+VERIFY = environ.get("VERIFY", "False") # set True Or False and make sure spelling is correct and first letter capital.
 
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
