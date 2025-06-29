@@ -8,11 +8,12 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, VERIFY_TUTORIAL, VERIFY
-from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, check_verification
+from info import CHANNELS, ADMINS, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT
+from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, create_invite_links
 from database.connections_mdb import active_connection
 import re
 import json
+from pyrogram.types import Message
 import base64
 logger = logging.getLogger(__name__)
 
@@ -66,19 +67,9 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-    if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
-            return
-        btn = [
-            [
-                InlineKeyboardButton(
-                    " Join Updates Channel", url=invite_link.invite_link
-                )
-            ]
-        ]
+    if not await is_subscribed(message.from_user.id, client):
+        links = await create_invite_links(client)
+        btn = [[InlineKeyboardButton("🤖 Join Updates Channel", url=url)] for url in links.values()]
 
         if len(message.command) == 2:
             try:
@@ -87,7 +78,7 @@ async def start(client, message):
                 btn.append([InlineKeyboardButton(" Try Again", callback_data=f"{pre}#{file_id}")])
             except (IndexError, ValueError):
                 btn.append([InlineKeyboardButton(" Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-                
+        
         await client.send_message(
             chat_id=message.from_user.id,
             text="**Please Join My Updates Channel to use this Bot!**",
@@ -226,23 +217,6 @@ async def start(client, message):
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
-            if message.from_user.id not in ADMINS:
-                await message.reply('not in admins')
-                
-                if not await check_verification(client, message.from_user.id) and VERIFY == True:
-                    btn = [[
-                        InlineKeyboardButton("ᴠᴇʀɪғʏ", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start="))
-                    ],[
-                        InlineKeyboardButton("ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ", url=VERIFY_TUTORIAL)
-                    ]]
-                    text = "<b>ʜᴇʏ {} 👋,\n\nʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ ᴛᴏᴅᴀʏ, ᴘʟᴇᴀꜱᴇ ᴄʟɪᴄᴋ ᴏɴ ᴠᴇʀɪғʏ & ɢᴇᴛ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ғᴏʀ ᴛᴏᴅᴀʏ</b>"
-                    await message.reply_text(
-                        text=text.format(message.from_user.mention),
-                        protect_content=True,
-                        reply_markup=InlineKeyboardMarkup(btn)
-                    )
-                    return
-                    
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
@@ -281,14 +255,14 @@ async def start(client, message):
         caption=f_caption,
         protect_content=True if pre == 'filep' else False,
         )
-
-def is_admin(user) -> bool:Add commentMore actions
+                    
+def is_admin(user) -> bool:
     return (
         user.id in ADMINS or
         (f"@{user.username}" in ADMINS if user.username else False)
     )
 
-@Client.on_message(filters.command("fsub") & filters.private)Add commentMore actions
+@Client.on_message(filters.command("fsub") & filters.private)
 async def set_auth_channels(client, message: Message):
     user = message.from_user
     if not is_admin(user):
@@ -575,3 +549,4 @@ async def save_template(client, message):
     template = message.text.split(" ", 1)[1]
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
+    
