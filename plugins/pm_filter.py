@@ -67,7 +67,7 @@ async def next_page(bot, query):
         return
 
     settings = await get_settings(query.message.chat.id)
-    if settings['button']:Add commentMore actions
+    if settings['button']:
         btn = [
             [
                 InlineKeyboardButton(
@@ -77,7 +77,7 @@ async def next_page(bot, query):
             for file in files
         ]
     else:
-        btn = [Add commentMore actions
+        btn = [
             [
                 InlineKeyboardButton(
                     text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
@@ -99,13 +99,13 @@ async def next_page(bot, query):
 
     if n_offset == 0:
         btn.append(
-            [InlineKeyboardButton("◀️ BACK", callback_data=f"next_{req}_{key}_{off_set}"),Add commentMore actions
+            [InlineKeyboardButton("◀️ BACK", callback_data=f"next_{req}_{key}_{off_set}"),
              InlineKeyboardButton(f"📃 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
                                   callback_data="pages")]
         )
     elif off_set is None:
         btn.append(
-            [InlineKeyboardButton(f"📃 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),Add commentMore actions
+            [InlineKeyboardButton(f"📃 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),
              InlineKeyboardButton("NEXT ▶️", callback_data=f"next_{req}_{key}_{n_offset}")])
     else:
         btn.append(
@@ -117,7 +117,7 @@ async def next_page(bot, query):
         )
 
     try:
-        await query.edit_message_reply_markup(Add commentMore actions
+        await query.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(btn)
         )
     except MessageNotModified:
