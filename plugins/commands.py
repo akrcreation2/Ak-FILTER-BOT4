@@ -8,7 +8,7 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, VERIFY, VERIFY_TUTORIAL, BOT_USERNAME
+from info import CHANNELS, ADMINS, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, IS_VERIFY, HOW_TO_VERIFY
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, create_invite_links, verify_user, check_token, check_verification, get_token
 from database.connections_mdb import active_connection
 import re
@@ -106,27 +106,6 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-        data = message.command[1]
-    if data.split("-", 1)[0] == "verify": # set if or elif it depend on your code
-        userid = data.split("-", 2)[1]
-        token = data.split("-", 3)[2]
-        if str(message.from_user.id) != str(userid):
-            return await message.reply_text(
-                text="<b>Invalid link or Expired link !</b>",
-                protect_content=True
-            )
-        is_valid = await check_token(client, userid, token)
-        if is_valid == True:
-            await message.reply_text(
-                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files till today midnight.</b>",
-                protect_content=True
-            )
-            await verify_user(client, userid, token)
-        else:
-            return await message.reply_text(
-                text="<b>Invalid link or Expired link !</b>",
-                protect_content=True
-            )
     
     if len(message.command) == 2 and message.command[1].startswith('mntgx'):
         searches = message.command[1].split("-", 1)[1] 
@@ -233,23 +212,59 @@ async def start(client, message):
             await asyncio.sleep(1) 
         return await sts.delete()
         
-
+    elif data.split("-", 1)[0] == "verify":
+        userid = data.split("-", 2)[1]
+        token = data.split("-", 3)[2]
+        fileid = data.split("-", 3)[3]
+        if str(message.from_user.id) != str(userid):
+            return await message.reply_text(
+                text="<b>Iɴᴠᴀʟɪᴅ ʟɪɴᴋ ᴏʀ Exᴘɪʀᴇᴅ ʟɪɴᴋ !</b>",
+                protect_content=True if PROTECT_CONTENT else False
+            )
+        is_valid = await check_token(client, userid, token)
+        if is_valid == True:
+            if fileid == "send_all":
+                btn = [[
+                    InlineKeyboardButton("Gᴇᴛ Fɪʟᴇ", callback_data=f"checksub#send_all")
+                ]]
+                await verify_user(client, userid, token)
+                await message.reply_text(
+                    text=f"<b>Hᴇʏ {message.from_user.mention}, Yᴏᴜ ᴀʀᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ !\nNᴏᴡ ʏᴏᴜ ʜᴀᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ғᴏʀ ᴀʟʟ ᴍᴏᴠɪᴇs ᴛɪʟʟ ᴛʜᴇ ɴᴇxᴛ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ ᴡʜɪᴄʜ ɪs ᴀғᴛᴇʀ 12 ʜᴏᴜʀs ғʀᴏᴍ ɴᴏᴡ.</b>",
+                    protect_content=True if PROTECT_CONTENT else False,
+                    reply_markup=InlineKeyboardMarkup(btn)
+                )
+                return
+            btn = [[
+                InlineKeyboardButton("Get File", url=f"https://telegram.me/{temp.U_NAME}?start=files_{fileid}")
+            ]]
+            await message.reply_text(
+                text=f"<b>Hᴇʏ {message.from_user.mention}, Yᴏᴜ ᴀʀᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴠᴇʀɪғɪᴇᴅ !\nNᴏᴡ ʏᴏᴜ ʜᴀᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ғᴏʀ ᴀʟʟ ᴍᴏᴠɪᴇs ᴛɪʟʟ ᴛʜᴇ ɴᴇxᴛ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ ᴡʜɪᴄʜ ɪs ᴀғᴛᴇʀ 12 ʜᴏᴜʀs ғʀᴏᴍ ɴᴏᴡ.</b>",
+                protect_content=True if PROTECT_CONTENT else False,
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
+            await verify_user(client, userid, token)
+            return
+        else:
+            return await message.reply_text(
+                text="<b>Iɴᴠᴀʟɪᴅ ʟɪɴᴋ ᴏʀ Exᴘɪʀᴇᴅ ʟɪɴᴋ !</b>",
+                protect_content=True if PROTECT_CONTENT else False
+            )
+            
     files_ = await get_file_details(file_id)           
     if not files_:
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
-        if not await check_verification(client, message.from_user.id) and VERIFY == True:
-            btn = [[
-                InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{BOT_USERNAME}?start="))
-            ],[
-                InlineKeyboardButton("How To Open Link & Verify", url=VERIFY_TUTORIAL)
-            ]]
-            await message.reply_text(
-                text="<b>You are not verified !\nKindly verify to continue !</b>",
-                protect_content=True,
-                reply_markup=InlineKeyboardMarkup(btn)
-            )
-        return
         try:
+            if IS_VERIFY and not await check_verification(client, message.from_user.id):
+                btn = [[
+                    InlineKeyboardButton("Vᴇʀɪғʏ", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=", file_id)),
+                    InlineKeyboardButton("Hᴏᴡ Tᴏ Vᴇʀɪғʏ", url=HOW_TO_VERIFY)
+                ]]
+                await message.reply_text(
+                    text="<b>Yᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ!\nKɪɴᴅʟʏ ᴠᴇʀɪғʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ Sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ ɢᴇᴛ ᴀᴄᴄᴇss ᴛᴏ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏᴠɪᴇs ᴜɴᴛɪʟ 12 ʜᴏᴜʀs ғʀᴏᴍ ɴᴏᴡ !</b>",
+                    protect_content=True if PROTECT_CONTENT else False,
+                    reply_markup=InlineKeyboardMarkup(btn)
+                )
+                return
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
@@ -282,6 +297,17 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
+if IS_VERIFY and not await check_verification(client, message.from_user.id):
+        btn = [[
+            InlineKeyboardButton("Vᴇʀɪғʏ", url=await get_token(client, message.from_user.id, f"https://telegram.me/{temp.U_NAME}?start=", file_id)),
+            InlineKeyboardButton("Hᴏᴡ Tᴏ Vᴇʀɪғʏ", url=HOW_TO_VERIFY)
+        ]]
+        await message.reply_text(
+            text="<b>Yᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ!\nKɪɴᴅʟʏ ᴠᴇʀɪғʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ Sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ ɢᴇᴛ ᴀᴄᴄᴇss ᴛᴏ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏᴠɪᴇs ᴜɴᴛɪʟ 12 ʜᴏᴜʀs ғʀᴏᴍ ɴᴏᴡ !</b>",
+            protect_content=True if PROTECT_CONTENT else False,
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+        return
     await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
@@ -464,6 +490,17 @@ async def settings(client, message):
 
     settings = await get_settings(grp_id)
 
+    try:
+        if settings['max_btn']:
+            settings = await get_settings(grp_id)
+    except KeyError:
+        await save_group_settings(grp_id, 'max_btn', False)
+        settings = await get_settings(grp_id)
+    if 'is_shortlink' not in settings.keys():
+        await save_group_settings(grp_id, 'is_shortlink', False)
+    else:
+        pass
+
     if settings is not None:
         buttons = [
             [
@@ -526,6 +563,16 @@ async def settings(client, message):
                     callback_data=f'setgs#welcome#{settings["welcome"]}#{grp_id}',
                 ),
             ],
+            [
+                InlineKeyboardButton(
+                    'SʜᴏʀᴛLɪɴᴋ',
+                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
+                ),
+                InlineKeyboardButton(
+                    '✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
+                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
+                ),
+            ],
         ]
 
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -582,4 +629,32 @@ async def save_template(client, message):
     template = message.text.split(" ", 1)[1]
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
+
+@Client.on_message(filters.command("shortlink") & filters.user(ADMINS))
+async def shortlink(bot, message):
+    chat_type = message.chat.type
+    if chat_type == enums.ChatType.PRIVATE:
+        return await message.reply_text(f"<b>Hᴇʏ {message.from_user.mention}, Tʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ᴏɴ ɢʀᴏᴜᴘs !</b>")
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grpid = message.chat.id
+        title = message.chat.title
+    else:
+        return
+    data = message.text
+    userid = message.from_user.id
+    user = await bot.get_chat_member(grpid, userid)
+    if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
+        return await message.reply_text("<b>Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴀᴄᴄᴇss ᴛᴏ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ !</b>")
+    else:
+        pass
+    try:
+        command, shortlink_url, api = data.split(" ")
+    except:
+        return await message.reply_text("<b>Cᴏᴍᴍᴀɴᴅ Iɴᴄᴏᴍᴘʟᴇᴛᴇ :(\n\nGɪᴠᴇ ᴍᴇ ᴀ sʜᴏʀᴛʟɪɴᴋ ᴀɴᴅ ᴀᴘɪ ᴀʟᴏɴɢ ᴡɪᴛʜ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ !\n\nFᴏʀᴍᴀᴛ: <code>/shortlink shorturllink.in 95a8195c40d31e0c3b6baa68813fcecb1239f2e9</code></b>")
+    reply = await message.reply_text("<b>Pʟᴇᴀsᴇ Wᴀɪᴛ...</b>")
+    await save_group_settings(grpid, 'shortlink', shortlink_url)
+    await save_group_settings(grpid, 'shortlink_api', api)
+    await save_group_settings(grpid, 'is_shortlink', True)
+    await reply.edit_text(f"<b>Sᴜᴄᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ sʜᴏʀᴛʟɪɴᴋ API ғᴏʀ {title}.\n\nCᴜʀʀᴇɴᴛ Sʜᴏʀᴛʟɪɴᴋ Wᴇʙsɪᴛᴇ: <code>{shortlink_url}</code>\nCᴜʀʀᴇɴᴛ API: <code>{api}</code></b>")
+    
     
