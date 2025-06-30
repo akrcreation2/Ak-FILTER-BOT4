@@ -44,11 +44,13 @@ DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 #Token
-VERIFY_API = environ.get("VERIFY_API", "") # shortlink api
-VERIFY_URL = environ.get("VERIFY_URL", "") # shortlink domain without https://
-VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "") # how to open link 
-BOT_USERNAME = environ.get("BOT_USERNAME", "") # bot username without @
-VERIFY = environ.get("VERIFY", "True") # set True Or False and make sure spelling is correct and first letter capital.
+IS_VERIFY = is_enabled((environ.get('IS_VERIFY', 'True')), True)
+HOW_TO_VERIFY = environ.get('HOW_TO_VERIFY', "https://t.me/open_link_trick/17")
+VERIFY2_URL = environ.get('VERIFY2_URL', "gyanilinks.com")
+VERIFY2_API = environ.get('VERIFY2_API', "261dca24c13670f479145357d2569fece3bae1d2")
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'gyanilinks.com')
+SHORTLINK_API = environ.get('SHORTLINK_API', '261dca24c13670f479145357d2569fece3bae1d2')
+IS_SHORTLINK = is_enabled((environ.get('IS_SHORTLINK', 'False')), False)
 
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
