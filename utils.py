@@ -477,16 +477,16 @@ async def get_shortlink(chat_id, link):
                         return data["shortenedUrl"]
                     else:
                         logger.error(f"Error: {data['message']}")
-                        if URL == 'gyanilinks.com':
-                            return f'https://{URL}/api?api={API}&url={link}'
+                        if URL == 'seturl.in':
+                            return f'https://{URL}/api?api={API}&url={link}&alias=CustomAlias'
                         else:
-                            return f'https://{URL}/api?api={API}&link={link}'
+                            return f'https://{URL}/api?api={API}&link={link}&alias=CustomAlias'
         except Exception as e:
             logger.error(e)
-            if URL == 'gyanilinks.com':
-                return f'https://{URL}/api?api={API}&url={link}'
+            if URL == 'seturl.in':
+                return f'https://{URL}/api?api={API}&url={link}&alias=CustomAlias'
             else:
-                return f'https://{URL}/api?api={API}&link={link}'
+                return f'https://{URL}/api?api={API}&link={link}&alias=CustomAlias'
 
 async def get_verify_shorted_link(num, link):
     if int(num) == 1:
@@ -532,16 +532,16 @@ async def get_verify_shorted_link(num, link):
                         return data["shortenedUrl"]
                     else:
                         logger.error(f"Error: {data['message']}")
-                        if URL == 'gyanilinks.com':
-                            return f'https://{URL}/api?api={API}&url={link}'
+                        if URL == 'seturl.in':
+                            return f'https://{URL}/api?api={API}&url={link}&alias=CustomAlias'
                         else:
-                            return f'https://{URL}/api?api={API}&link={link}'
+                            return f'https://{URL}/api?api={API}&link={link}&alias=CustomAlias'
         except Exception as e:
             logger.error(e)
-            if URL == 'gyanilinks.com':
-                return f'https://{URL}/api?api={API}&url={link}'
+            if URL == 'seturl.in':
+                return f'https://{URL}/api?api={API}&url={link}&alias=CustomAlias'
             else:
-                return f'https://{URL}/api?api={API}&link={link}'
+                return f'https://{URL}/api?api={API}&link={link}&alias=CustomAlias'
 
 async def check_token(bot, userid, token):
     user = await bot.get_users(userid)
