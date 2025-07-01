@@ -477,13 +477,13 @@ async def get_shortlink(chat_id, link):
                         return data["shortenedUrl"]
                     else:
                         logger.error(f"Error: {data['message']}")
-                        if URL == 'clicksfly.com':
+                        if URL == 'gyanilinks.com':
                             return f'https://{URL}/api?api={API}&url={link}'
                         else:
                             return f'https://{URL}/api?api={API}&link={link}'
         except Exception as e:
             logger.error(e)
-            if URL == 'clicksfly.com':
+            if URL == 'gyanilinks.com':
                 return f'https://{URL}/api?api={API}&url={link}'
             else:
                 return f'https://{URL}/api?api={API}&link={link}'
@@ -532,13 +532,13 @@ async def get_verify_shorted_link(num, link):
                         return data["shortenedUrl"]
                     else:
                         logger.error(f"Error: {data['message']}")
-                        if URL == 'clicksfly.com':
+                        if URL == 'gyanilinks.com':
                             return f'https://{URL}/api?api={API}&url={link}'
                         else:
                             return f'https://{URL}/api?api={API}&link={link}'
         except Exception as e:
             logger.error(e)
-            if URL == 'clicksfly.com':
+            if URL == 'gyanilinks.com':
                 return f'https://{URL}/api?api={API}&url={link}'
             else:
                 return f'https://{URL}/api?api={API}&link={link}'
