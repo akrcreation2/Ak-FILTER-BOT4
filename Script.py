@@ -1,117 +1,117 @@
 class script(object):
     START_TXT = """<b><i><blockquote>ʜᴇ'ʟʟᴏ {} 👋,</blockquote>
-ɪ ᴀᴍ ᴘᴏᴡᴇʀғᴜʟ ғɪʟᴛᴇʀ ɪ ᴄᴀɴ sʜᴀʀᴇ ᴍᴏᴠɪᴇs ᴀɴᴅ sᴇʀɪᴇs // ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴍᴀɢɪᴄ 🪄</i></b>"""
+ɪ ᴀᴍ ᴘᴏᴡᴇʀғᴜʟ ғɪʟᴛᴇʀ ɪ ᴄᴀɴ sʜᴀʀᴇ ᴍᴏᴠɪᴇs ᴀɴᴅ sᴇʀɪᴇs // ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴛᴏ sᴇᴇ ᴛʜᴇ ᴍᴀɢɪᴄ 🪄 
+ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ ᴀʙᴏᴜᴛ ᴍᴇ ᴜsᴇ ᴛʜᴇ ʙᴇʟᴏᴡ ᴏᴘᴛɪᴏɴs 👇</i></b>"""
     HELP_TXT = """
-     Hey  {} 
-Currently using free server so please Dont kill Me...
+    <b> ʜᴇʏ  {} 
+ᴄᴜʀʀᴇɴᴛʟʏ ᴜꜱɪɴɢ ꜰʀᴇᴇ ꜱᴇʀᴠᴇʀ ꜱᴏ ᴘʟᴇᴀꜱᴇ ᴅᴏɴᴛ ᴋɪʟʟ ᴍᴇ... </b>
 """
     ABOUT_TXT = """<b>
-◎ Cʀᴇᴀᴛᴏʀ: <a href=https://telegram.me/knmlpro2> KNMLPRO2</a>
-◎ Lᴀɴɢᴜᴀɢᴇ: Pʏᴛʜᴏɴ 3
-◎ Dᴀᴛᴀ Bᴀsᴇ: Mᴏɴɢᴏ DB
-◎ Bᴏᴛ Sᴇʀᴠᴇʀ: KoYeb</b>"""
-    SOURCE_TXT = """<b>NOTE:</b>
-- Shobana Filter Bot  is a open source project. 
-- Source - <ahref=https://github.com/>Click Here to not get source code 😁</a>
+◎ ᴄʀᴇᴀᴛᴏʀ : <a href=https://telegram.me/knmlpro2> ᴋɴᴍʟᴘʀᴏ2</a>
+◎ ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ 3
+◎ ᴅᴀᴛᴀ ʙᴀꜱᴇ : ᴍᴏɴɢᴏ ᴅʙ
+◎ ʙᴏᴛ ꜱᴇʀᴠᴇʀ : ᴠᴘꜱ </b>"""
+    SOURCE_TXT = """<b>ɴᴏᴛᴇ:
+◕ ʀᴀᴀᴅʜᴀ ᴋʀɪꜱʜɴᴀ ꜰɪʟᴛᴇʀ ʙᴏᴛ (ᴋɴᴍʟᴘʀᴏ2 ꜰɪʟᴛᴇʀ ʙᴏᴛ) ɪꜱ ɴᴏᴛ ᴀ ᴏᴘᴇɴ ꜱᴏᴜʀᴄᴇ ᴘʀᴏᴊᴇᴄᴛ.
+◕ ꜱᴏᴜʀᴄᴇ - <a href=https://github.com/>ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ɴᴏᴛ ɢᴇᴛ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ 😁</a>
 
-<b>DEVS:</b>
--<a href=https://telegram.me/knmlpro2> KNMLPRO2</a>"""
-    MANUELFILTER_TXT = """Help: <b>Filters</b>
-- Filter is the feature were users can set automated replies for a particular keyword and shobana will respond whenever a keyword is found the message
-<b>NOTE:</b>
-1. This Bot should have admin privillage.
-2. only admins can add filters in a chat.
-3. alert buttons have a limit of 64 characters.
+ᴅᴇᴠꜱ:
+-<a href=https://telegram.me/knmlpro2> ᴋɴᴍʟᴘʀᴏ2</a></b>"""
+    MANUELFILTER_TXT = """<b>ʜᴇʟᴘ: ꜰɪʟᴛᴇʀꜱ
+◕ ꜰɪʟᴛᴇʀ ɪꜱ ᴛʜᴇ ꜰᴇᴀᴛᴜʀᴇ ᴡᴇʀᴇ ᴜꜱᴇʀꜱ ᴄᴀɴ ꜱᴇᴛ ᴀᴜᴛᴏᴍᴀᴛᴇᴅ ʀᴇᴘʟɪᴇꜱ ꜰᴏʀ ᴀ ᴘᴀʀᴛɪᴄᴜʟᴀʀ ᴋᴇʏᴡᴏʀᴅ ᴀɴᴅ ꜱʜᴏʙᴀɴᴀ ᴡɪʟʟ ʀᴇꜱᴘᴏɴᴅ ᴡʜᴇɴᴇᴠᴇʀ ᴀ ᴋᴇʏᴡᴏʀᴅ ɪꜱ ꜰᴏᴜɴᴅ ᴛʜᴇ ᴍᴇꜱꜱᴀɢᴇ 
+ɴᴏᴛᴇ: 
+1. ᴛʜɪꜱ ʙᴏᴛ ꜱʜᴏᴜʟᴅ ʜᴀᴠᴇ ᴀᴅᴍɪɴ ᴘʀɪᴠɪʟʟᴀɢᴇ. 
+2. ᴏɴʟʏ ᴀᴅᴍɪɴꜱ ᴄᴀɴ ᴀᴅᴅ ꜰɪʟᴛᴇʀꜱ ɪɴ ᴀ ᴄʜᴀᴛ. 
+3. ᴀʟᴇʀᴛ ʙᴜᴛᴛᴏɴꜱ ʜᴀᴠᴇ ᴀ ʟɪᴍɪᴛ ᴏꜰ 64 ᴄʜᴀʀᴀᴄᴛᴇʀꜱ.</b>
 
-<b>Commands and Usage:</b>
-• /filter - <code>add a filter in chat</code>
-• /filters - <code>list all the filters of a chat</code>
-• /del - <code>delete a specific filter in chat</code>
-• /delall - <code>delete the whole filters in a chat (chat owner only)</code>"""
-    BUTTON_TXT = """Help: <b>Buttons</b>
+<b>ᴄᴏᴍᴍᴀɴᴅꜱ ᴀɴᴅ ᴜꜱᴀɢᴇ:</b>
+◕ /filter - <code><b>ᴀᴅᴅ ᴀ ꜰɪʟᴛᴇʀ ɪɴ ᴄʜᴀᴛ</b></code>
+◕ /filters - <code><b>ʟɪꜱᴛ ᴀʟʟ ᴛʜᴇ ꜰɪʟᴛᴇʀꜱ ᴏꜰ ᴀ ᴄʜᴀᴛ</b></code>
+◕ /del - <code><b>ᴅᴇʟᴇᴛᴇ ᴀ ꜱᴘᴇᴄɪꜰɪᴄ ꜰɪʟᴛᴇʀ ɪɴ ᴄʜᴀᴛ</b></code>
+◕ /delall - <code><b>ᴅᴇʟᴇᴛᴇ ᴛʜᴇ ᴡʜᴏʟᴇ ꜰɪʟᴛᴇʀꜱ ɪɴ ᴀ ᴄʜᴀᴛ (ᴄʜᴀᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ)</b></code>"""
+    BUTTON_TXT = """<b>ʜᴇʟᴘ: ʙᴜᴛᴛᴏɴꜱ
 
-- This Bot Supports both url and alert inline buttons.
+◕ ᴛʜɪꜱ ʙᴏᴛ ꜱᴜᴘᴘᴏʀᴛꜱ ʙᴏᴛʜ ᴜʀʟ ᴀɴᴅ ᴀʟᴇʀᴛ ɪɴʟɪɴᴇ ʙᴜᴛᴛᴏɴꜱ.  
+ɴᴏᴛᴇ: 
+1. ᴛᴇʟᴇɢʀᴀᴍ ᴡɪʟʟ ɴᴏᴛ ᴀʟʟᴏᴡꜱ ʏᴏᴜ ᴛᴏ ꜱᴇɴᴅ ʙᴜᴛᴛᴏɴꜱ ᴡɪᴛʜᴏᴜᴛ ᴀɴʏ ᴄᴏɴᴛᴇɴᴛ, ꜱᴏ ᴄᴏɴᴛᴇɴᴛ ɪꜱ ᴍᴀɴᴅᴀᴛᴏʀʏ. 
+2. ᴛʜɪꜱ ʙᴏᴛ ꜱᴜᴘᴘᴏʀᴛꜱ ʙᴜᴛᴛᴏɴꜱ ᴡɪᴛʜ ᴀɴʏ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴇᴅɪᴀ ᴛʏᴘᴇ. 
+3. ʙᴜᴛᴛᴏɴꜱ ꜱʜᴏᴜʟᴅ ʙᴇ ᴘʀᴏᴘᴇʀʟʏ ᴘᴀʀꜱᴇᴅ ᴀꜱ ᴍᴀʀᴋᴅᴏᴡɴ ꜰᴏʀᴍᴀᴛ
 
-<b>NOTE:</b>
-1. Telegram will not allows you to send buttons without any content, so content is mandatory.
-2. This Bot supports buttons with any telegram media type.
-3. Buttons should be properly parsed as markdown format
-
-<b>URL buttons:</b>
+ᴜʀʟ ʙᴜᴛᴛᴏɴꜱ:</b>
 <code>[Button Text](buttonurl:https://github.com/)</code>
 
-<b>Alert buttons:</b>
+<b>ᴀʟᴇʀᴛ ʙᴜᴛᴛᴏɴꜱ:</b>
 <code>[Button Text](buttonalert:This is an alert message)</code>"""
     AUTOFILTER_TXT = """
 
-<b>ɴᴏᴛᴇ: Fɪʟᴇ Iɴᴅᴇx</b>
-1. ᴍᴀᴋᴇ ᴍᴇ ᴛʜᴇ ᴀᴅᴍɪɴ ᴏꜰ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ɪꜰ ɪᴛ'ꜱ ᴘʀɪᴠᴀᴛᴇ.
-2. ᴍᴀᴋᴇ ꜱᴜʀᴇ ᴛʜᴀᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴅᴏᴇꜱ ɴᴏᴛ ᴄᴏɴᴛᴀɪɴꜱ ᴄᴀᴍʀɪᴘꜱ, ᴘᴏʀɴ ᴀɴᴅ ꜰᴀᴋᴇ ꜰɪʟᴇꜱ.
-3. ꜰᴏʀᴡᴀʀᴅ ᴛʜᴇ ʟᴀꜱᴛ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ᴍᴇ ᴡɪᴛʜ Qᴜᴏᴛᴇꜱ. ɪ'ʟʟ ᴀᴅᴅ ᴀʟʟ ᴛʜᴇ ꜰɪʟᴇꜱ ɪɴ ᴛʜᴀᴛ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴍʏ ᴅʙ.
+<b>ɴᴏᴛᴇ: ꜰɪʟᴇ ɪɴᴅᴇx
+1. ᴍᴀᴋᴇ ᴍᴇ ᴛʜᴇ ᴀᴅᴍɪɴ ᴏꜰ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ɪꜰ ɪᴛ'ꜱ ᴘʀɪᴠᴀᴛᴇ. 
+2. ᴍᴀᴋᴇ ꜱᴜʀᴇ ᴛʜᴀᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴅᴏᴇꜱ ɴᴏᴛ ᴄᴏɴᴛᴀɪɴꜱ ᴄᴀᴍʀɪᴘꜱ, ᴘᴏʀɴ ᴀɴᴅ ꜰᴀᴋᴇ ꜰɪʟᴇꜱ. 
+3. ꜰᴏʀᴡᴀʀᴅ ᴛʜᴇ ʟᴀꜱᴛ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ᴍᴇ ᴡɪᴛʜ Qᴜᴏᴛᴇꜱ. ɪ'ʟʟ ᴀᴅᴅ ᴀʟʟ ᴛʜᴇ ꜰɪʟᴇꜱ ɪɴ ᴛʜᴀᴛ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴍʏ ᴅʙ.</b>
 
-<b>Nᴏᴛᴇ: AᴜᴛᴏFɪʟᴛᴇʀ</b>
-1. Aᴅᴅ ᴛʜᴇ ʙᴏᴛ ᴀs ᴀᴅᴍɪɴ ᴏɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ.
-2. Usᴇ /connect ᴀɴᴅ ᴄᴏɴɴᴇᴄᴛ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴛᴏ ᴛʜᴇ ʙᴏᴛ.
-3. Usᴇ /settings ᴏɴ ʙᴏᴛ's PM ᴀɴᴅ ᴛᴜʀɴ ᴏɴ AᴜᴛᴏFɪʟᴛᴇʀ ᴏɴ ᴛʜᴇ sᴇᴛᴛɪɴɢs ᴍᴇɴᴜ.."""
-    CONNECTION_TXT = """Help: <b>Connections</b>
+<b>ɴᴏᴛᴇ: ᴀᴜᴛᴏꜰɪʟᴛᴇʀ
+1. ᴀᴅᴅ ᴛʜᴇ ʙᴏᴛ ᴀꜱ ᴀᴅᴍɪɴ ᴏɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ. 
+2. ᴜꜱᴇ</b> /connect <b>ᴀɴᴅ ᴄᴏɴɴᴇᴄᴛ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴛᴏ ᴛʜᴇ ʙᴏᴛ. 
+3. ᴜꜱᴇ</b> /settings <b>ᴏɴ ʙᴏᴛ'ꜱ ᴘᴍ ᴀɴᴅ ᴛᴜʀɴ ᴏɴ ᴀᴜᴛᴏꜰɪʟᴛᴇʀ ᴏɴ ᴛʜᴇ ꜱᴇᴛᴛɪɴɢꜱ ᴍᴇɴᴜ..</b>"""
+    CONNECTION_TXT = """<b>ʜᴇʟᴘ: ᴄᴏɴɴᴇᴄᴛɪᴏɴꜱ
 
-- Used to connect bot to PM for managing filters 
-- it helps to avoid spamming in groups.
+◕ ᴜꜱᴇᴅ ᴛᴏ ᴄᴏɴɴᴇᴄᴛ ʙᴏᴛ ᴛᴏ ᴘᴍ ꜰᴏʀ ᴍᴀɴᴀɢɪɴɢ ꜰɪʟᴛᴇʀꜱ 
+◕ ɪᴛ ʜᴇʟᴘꜱ ᴛᴏ ᴀᴠᴏɪᴅ ꜱᴘᴀᴍᴍɪɴɢ ɪɴ ɢʀᴏᴜᴘꜱ.
 
-<b>NOTE:</b>
-1. Only admins can add a connection.
-2. Send <code>/connect</code> for connecting me to ur PM
+ɴᴏᴛᴇ: 
+1. ᴏɴʟʏ ᴀᴅᴍɪɴꜱ ᴄᴀɴ ᴀᴅᴅ ᴀ ᴄᴏɴɴᴇᴄᴛɪᴏɴ. 
+2. ꜱᴇɴᴅ</b> <code>/connect</code> <b>ꜰᴏʀ ᴄᴏɴɴᴇᴄᴛɪɴɢ ᴍᴇ ᴛᴏ ᴜʀ ᴘᴍ
 
-<b>Commands and Usage:</b>
-• /connect  - <code>connect a particular chat to your PM</code>
-• /disconnect  - <code>disconnect from a chat</code>
-• /connections - <code>list all your connections</code>"""
-    EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
+ᴄᴏᴍᴍᴀɴᴅꜱ ᴀɴᴅ ᴜꜱᴀɢᴇ:</b>
+◕ /connect  - <b>ᴄᴏɴɴᴇᴄᴛ ᴀ ᴘᴀʀᴛɪᴄᴜʟᴀʀ ᴄʜᴀᴛ ᴛᴏ ʏᴏᴜʀ ᴘᴍ</b>
+◕ /disconnect  - <b>ᴅɪꜱᴄᴏɴɴᴇᴄᴛ ꜰʀᴏᴍ ᴀ ᴄʜᴀᴛ</b>
+◕ /connections - <b>ʟɪꜱᴛ ᴀʟʟ ʏᴏᴜʀ ᴄᴏɴɴᴇᴄᴛɪᴏɴꜱ</b>"""
+    EXTRAMOD_TXT = """<b>ʜᴇʟᴘ: ᴇxᴛʀᴀ ᴍᴏᴅᴜʟᴇꜱ  
+    
+ɴᴏᴛᴇ: 
+ᴛʜᴇꜱᴇ ᴀʀᴇ ᴛʜᴇ ᴇxᴛʀᴀ ꜰᴇᴀᴛᴜʀᴇꜱ ᴏꜰ ᴛʜɪꜱ ʙᴏᴛ.
 
-<b>NOTE:</b>
-these are the extra features of ShobanaFilterBot
-
-<b>Commands and Usage:</b>
-• /id - <code>get id of a specified user.</code>
-• /info  - <code>get information about a user.</code>
-• /imdb  - <code>get the film information from IMDb source.</code>
-• /search  - <code>get the film information from various sources.</code>
-• /start - <code>Check I'm Alive.</code>
-• /ping - <code>check ping.</code>
-• /usage - <code>usage of bot.</code>
-• /info - <code>User info .</code>
-• /id - <code>User id  .</code>
-• /broadcast - <code>Broadcast (owner only).</code>
+ᴄᴏᴍᴍᴀɴᴅꜱ ᴀɴᴅ ᴜꜱᴀɢᴇ:</b>
+◕ /id - <b>ɢᴇᴛ ɪᴅ ᴏꜰ ᴀ ꜱᴘᴇᴄɪꜰɪᴇᴅ ᴜꜱᴇʀ.</b>
+◕ /info  - <b>ɢᴇᴛ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀ ᴜꜱᴇʀ.</b>
+◕ /imdb  - <b>ɢᴇᴛ ᴛʜᴇ ꜰɪʟᴍ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ꜰʀᴏᴍ ɪᴍᴅʙ ꜱᴏᴜʀᴄᴇ.</b>
+◕ /search  - <b>ɢᴇᴛ ᴛʜᴇ ꜰɪʟᴍ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ꜰʀᴏᴍ ᴠᴀʀɪᴏᴜꜱ ꜱᴏᴜʀᴄᴇꜱ.</b>
+◕ /start - <b>ᴄʜᴇᴄᴋ ɪ'ᴍ ᴀʟɪᴠᴇ.</b>
+◕ /ping - <b>ᴄʜᴇᴄᴋ ᴘɪɴɢ.</b>
+◕ /usage - <b>ᴜꜱᴀɢᴇ ᴏꜰ ʙᴏᴛ.</b>
+◕ /info - <b>ᴜꜱᴇʀ ɪɴꜰᴏ.</b>
+◕ /id - <b>ᴜꜱᴇʀ ɪᴅ.</b>
+◕ /broadcast - <b>ʙʀᴏᴀᴅᴄᴀꜱᴛ (ᴏᴡɴᴇʀ ᴏɴʟʏ).</b>
 """
-    ADMIN_TXT = """Help: <b>Admin mods</b>
-
-<b>NOTE:</b>
-This module only works for my admins
-
-<b>Commands and Usage:</b>
-• /logs - <code>to get the rescent errors</code>
-• /stats - <code>to get status of files in db.</code>
-• /delete - <code>to delete a specific file from db.</code>
-• /users - <code>to get list of my users and ids.</code>
-• /chats - <code>to get list of the my chats and ids </code>
-• /leave  - <code>to leave from a chat.</code>
-• /disable  -  <code>do disable a chat.</code>
-• /ban  - <code>to ban a user.</code>
-• /unban  - <code>to unban a user.</code>
-• /channel - <code>to get list of total connected channels</code>
-• /broadcast - <code>to broadcast a message to all users</code>"""
-    STATUS_TXT = """★ 𝚃𝙾𝚃𝙰𝙻 𝙵𝙸𝙻𝙴𝚂: <code>{}</code>
- ★ 𝚃𝙾𝚃𝙰𝙻 𝚄𝚂𝙴𝚁𝚂: <code>{}</code>
- ★ 𝚃𝙾𝚃𝙰𝙻 𝙲𝙷𝙰𝚃𝚂: <code>{}</code>
- ★ 𝚄𝚂𝙴𝙳 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> 
- ★ 𝙵𝚁𝙴𝙴 𝚂𝚃𝙾𝚁𝙰𝙶𝙴: <code>{}</code> """
+    ADMIN_TXT = """<b>ʜᴇʟᴘ: ᴀᴅᴍɪɴ ᴍᴏᴅꜱ  
+    
+ɴᴏᴛᴇ: 
+ᴛʜɪꜱ ᴍᴏᴅᴜʟᴇ ᴏɴʟʏ ᴡᴏʀᴋꜱ ꜰᴏʀ ᴍʏ ᴀᴅᴍɪɴꜱ.  
+    
+ᴄᴏᴍᴍᴀɴᴅꜱ ᴀɴᴅ ᴜꜱᴀɢᴇ:</b>
+◕ /logs - <b>ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʀᴇꜱᴄᴇɴᴛ ᴇʀʀᴏʀꜱ.</b>
+◕ /stats - <b>ᴛᴏ ɢᴇᴛ ꜱᴛᴀᴛᴜꜱ ᴏꜰ ꜰɪʟᴇꜱ ɪɴ ᴅʙ.</b>
+◕ /delete - <b>ᴛᴏ ᴅᴇʟᴇᴛᴇ ᴀ ꜱᴘᴇᴄɪꜰɪᴄ ꜰɪʟᴇ ꜰʀᴏᴍ ᴅʙ.</b>
+◕ /users - <b>ᴛᴏ ɢᴇᴛ ʟɪꜱᴛ ᴏꜰ ᴍʏ ᴜꜱᴇʀꜱ ᴀɴᴅ ɪᴅꜱ.</code>
+◕ /chats - <b>ᴛᴏ ɢᴇᴛ ʟɪꜱᴛ ᴏꜰ ᴛʜᴇ ᴍʏ ᴄʜᴀᴛꜱ ᴀɴᴅ ɪᴅꜱ.</b>
+◕ /leave  - <b>ᴛᴏ ʟᴇᴀᴠᴇ ꜰʀᴏᴍ ᴀ ᴄʜᴀᴛ.</b>
+◕ /disable  - <b>ᴅᴏ ᴅɪꜱᴀʙʟᴇ ᴀ ᴄʜᴀᴛ.</b>
+◕ /ban  - <b>ᴛᴏ ʙᴀɴ ᴀ ᴜꜱᴇʀ.</b>
+◕ /unban  - <b>ᴛᴏ ᴜɴʙᴀɴ ᴀ ᴜꜱᴇʀ.</b>
+◕ /channel - <b>ᴛᴏ ɢᴇᴛ ʟɪꜱᴛ ᴏꜰ ᴛᴏᴛᴀʟ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴄʜᴀɴɴᴇʟꜱ.</b>
+◕ /broadcast - <b>ᴛᴏ ʙʀᴏᴀᴅᴄᴀꜱᴛ ᴀ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ᴀʟʟ ᴜꜱᴇʀꜱ.</b>"""
+    STATUS_TXT = """<b> ★ ᴛᴏᴛᴀʟ ꜰɪʟᴇꜱ: <code>{}</code>
+ ★ ᴛᴏᴛᴀʟ ᴜꜱᴇʀꜱ: <code>{}</code>
+ ★ ᴛᴏᴛᴀʟ ᴄʜᴀᴛꜱ: <code>{}</code>
+ ★ ᴜꜱᴇᴅ ꜱᴛᴏʀᴀɢᴇ: <code>{}</code> 
+ ★ ꜰʀᴇᴇ ꜱᴛᴏʀᴀɢᴇ: <code>{}</code> </b>"""
     LOG_TEXT_G = """#NewGroup
 Group = {}(<code>{}</code>)
 Total Members = <code>{}</code>
 Added By - {}
 """
-    RESULT_TXT="""<blockquote> Hey,     </blockquote>
-<blockquote>Jᴜsᴛ Sᴇᴇ Wʜᴀᴛ I Found Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ </blockquote>"""
+    RESULT_TXT="""<b><blockquote> ʜᴇʏ,     </blockquote>
+<blockquote>ᴊᴜꜱᴛ ꜱᴇᴇ ᴡʜᴀᴛ ɪ ꜰᴏᴜɴᴅ ꜰᴏʀ ʏᴏᴜʀ ꜱᴇᴀʀᴄʜ </blockquote></b>"""
 
     CUSTOM_FILE_CAPTION = """<i><b>@Knmlpro2 - {file_caption}</b>  \n<b>🔰Pᴏᴡᴇʀᴇᴅ Bʏ ➜ @Knmlpro2 \n🔰Gʀᴏᴜᴘ ➜ @Knmlpro2_group </b></i>"""
 
@@ -129,21 +129,21 @@ ID - <code>{}</code>
 Name - {}
 """
     SPOLL_NOT_FND="""
-I couldn't find anything related to your request. 
-Try reading the instruction below 
+<b>ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ʏᴏᴜʀ ʀᴇQᴜᴇꜱᴛ.  
+ᴛʀʏ ʀᴇᴀᴅɪɴɢ ᴛʜᴇ ɪɴꜱᴛʀᴜᴄᴛɪᴏɴ ʙᴇʟᴏᴡ
 <blockquote>
-1️ Ask in Correct Spelling
-2️ Don't ask Movies which are not Realased on OTT PLATFORMS
-3️ Possible  ASK [movie name langauge] like this or [movie year] </blockquote>
-OR
-<b> Tʜɪs Mᴏᴠɪᴇ Is Nᴏᴛ Aᴅᴅᴇᴅ Tᴏ DB</b>
-<pre>Report To ADMIN BY USING /bugs command </pre> 
+1️ ᴀꜱᴋ ɪɴ ᴄᴏʀʀᴇᴄᴛ ꜱᴘᴇʟʟɪɴɢ 
+2️ ᴅᴏɴ'ᴛ ᴀꜱᴋ ᴍᴏᴠɪᴇꜱ ᴡʜɪᴄʜ ᴀʀᴇ ɴᴏᴛ ʀᴇᴀʟᴀꜱᴇᴅ ᴏɴ ᴏᴛᴛ ᴘʟᴀᴛꜰᴏʀᴍꜱ 
+3️ ᴘᴏꜱꜱɪʙʟᴇ  ᴀꜱᴋ [ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ʟᴀɴɢᴀᴜɢᴇ] ʟɪᴋᴇ ᴛʜɪꜱ ᴏʀ [ᴍᴏᴠɪᴇ ʏᴇᴀʀ] </blockquote>
+ᴏʀ
+ᴛʜɪꜱ ᴍᴏᴠɪᴇ ɪꜱ ɴᴏᴛ ᴀᴅᴅᴇᴅ ᴛᴏ ᴅʙ
+<pre>ʀᴇᴘᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ʙʏ ᴜꜱɪɴɢ</b> /bugs <b>ᴄᴏᴍᴍᴀɴᴅ</b> </pre> 
     """
 #SPELL CHECK LANGUAGES TO KNOW callback
-    ENG_SPELL="""Please Note Below📓
-1️⃣ Ask in Correct Spelling
-2️⃣ Don't ask Movies which are not Realased on OTT PLATFORMS
-3️⃣ Possible  ASK [movie name langauge] like this or [movie year]
+    ENG_SPELL="""<b>ᴘʟᴇᴀꜱᴇ ɴᴏᴛᴇ ʙᴇʟᴏᴡ📓
+1️⃣ ᴀꜱᴋ ɪɴ ᴄᴏʀʀᴇᴄᴛ ꜱᴘᴇʟʟɪɴɢ 
+2️⃣ ᴅᴏɴ'ᴛ ᴀꜱᴋ ᴍᴏᴠɪᴇꜱ ᴡʜɪᴄʜ ᴀʀᴇ ɴᴏᴛ ʀᴇᴀʟᴀꜱᴇᴅ ᴏɴ ᴏᴛᴛ ᴘʟᴀᴛꜰᴏʀᴍꜱ 
+3️⃣ ᴘᴏꜱꜱɪʙʟᴇ  ᴀꜱᴋ [ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ʟᴀɴɢᴀᴜɢᴇ] ʟɪᴋᴇ ᴛʜɪꜱ ᴏʀ [ᴍᴏᴠɪᴇ ʏᴇᴀʀ]</b>
     """
     KAN_SPELL="""ದಯವಿಟ್ಟು ಕೆಳಗೆ ಗಮನಿಸಿ📓
 1️⃣ ಸರಿಯಾದ ಕಾಗುಣಿತದಲ್ಲಿ ಕೇಳಿ
@@ -166,13 +166,13 @@ OR
 3️⃣ இந்த வடிவத்தில் கேளுங்கள் [திரைப்படத்தின் பெயர், ஆண்டு]
     """
 
-    CHK_MOV_ALRT="""♻️ ᴄʜᴇᴄᴋɪɴɢ ꜰɪʟᴇ ᴏɴ ᴍʏ ᴅᴀᴛᴀʙᴀꜱᴇ... ♻️"""
+    CHK_MOV_ALRT="""<b>♻️ ᴄʜᴇᴄᴋɪɴɢ ꜰɪʟᴇ ᴏɴ ᴍʏ ᴅᴀᴛᴀʙᴀꜱᴇ... ♻️</b>"""
     
-    OLD_MES=""" 𝐘𝐨𝐮 𝐚𝐫𝐞 𝐮𝐬𝐢𝐧𝐠 𝐨𝐧𝐞 𝐨𝐟 𝐦𝐲 𝐨𝐥𝐝 𝐦𝐞𝐬𝐬𝐚𝐠𝐞𝐬🤔, 𝐩𝐥𝐞𝐚𝐬𝐞 𝐬𝐞𝐧𝐝 𝐭𝐡𝐞 𝐫𝐞𝐪𝐮𝐞𝐬𝐭 𝐚𝐠𝐚𝐢𝐧"""
+    OLD_MES="""<b>ʏᴏᴜ ᴀʀᴇ ᴜꜱɪɴɢ ᴏɴᴇ ᴏꜰ ᴍʏ ᴏʟᴅ ᴍᴇꜱꜱᴀɢᴇꜱ 🤔, ᴘʟᴇᴀꜱᴇ ꜱᴇɴᴅ ᴛʜᴇ ʀᴇQᴜᴇꜱᴛ ᴀɢᴀɪɴ.</b>"""
     
-    MOV_NT_FND="""<b>Tʜɪs Mᴏᴠɪᴇ Is Nᴏᴛ Yᴇᴛ Rᴇᴀʟᴇsᴇᴅ Oʀ Aᴅᴅᴇᴅ Tᴏ DB</b>
-<pre>Report To ADMIN BY USING /bugs command </pre> 
+    MOV_NT_FND="""<b>ᴛʜɪꜱ ᴍᴏᴠɪᴇ ɪꜱ ɴᴏᴛ ʏᴇᴛ ʀᴇᴀʟᴇꜱᴇᴅ ᴏʀ ᴀᴅᴅᴇᴅ ᴛᴏ ᴅʙ
+<pre>ʀᴇᴘᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ʙʏ ᴜꜱɪɴɢ</b> /bugs <b>ᴄᴏᴍᴍᴀɴᴅ</b> </pre> 
 """
     RESTART_TXT = """
-<b><u>𝖡𝗈𝗍 𝖱𝖾𝗌𝗍𝖺𝗋𝗍𝖾𝖽 ✅</u></b>"""
+<b><u>ʙᴏᴛ ʀᴇꜱᴛᴀʀᴛᴇᴅ ✅</u></b>"""
 
