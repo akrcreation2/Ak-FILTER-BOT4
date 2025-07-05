@@ -15,6 +15,7 @@ from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, create_invite_links, get_shortlink, check_verification, get_token
 from database.users_chats_db import db
+from info import HYPER_MODE
 from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.filters_mdb import (
     del_all,
@@ -32,20 +33,26 @@ SPELL_CHECK = {}
 
 @Client.on_message(filters.group | filters.private & filters.text & filters.incoming) 
 async def give_filter(client, message):
+    try:
+        await message.delete()
+    except Exception as e:
+        logger.exception("Failed to delete message:", e)
+
     k = await manual_filters(client, message)
     if k == False:
         await auto_filter(client, message)
-
-
+        
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
     if int(req) not in [query.from_user.id, 0]:
         return await query.answer("**Search for Yourself**🔎", show_alert=True)
+
     try:
         offset = int(offset)
     except:
         offset = 0
+
     search = BUTTONS.get(key)
     if not search:
         await query.answer(script.OLD_MES, show_alert=True)
@@ -59,58 +66,39 @@ async def next_page(bot, query):
 
     if not files:
         return
-    settings = await get_settings(query.message.chat.id)
-    temp.SEND_ALL_TEMP[query.from_user.id] = files
-    if 'is_shortlink' in settings.keys():
-        ENABLE_SHORTLINK = settings['is_shortlink']
-    else:
-        await save_group_settings(query.message.chat.id, 'is_shortlink', False)
-        ENABLE_SHORTLINK = False
-    if ENABLE_SHORTLINK and settings['button']:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-                ),
-            ]
-            for file in files
-        ]
-    elif ENABLE_SHORTLINK and not settings['button']:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-                ),
-            ]
-            for file in files
-        ]
-    elif settings['button'] and not ENABLE_SHORTLINK:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
-            ]
-            for file in files
-        ]
-    else:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
-                ),
-            ]
-            for file in files
-        ]
 
+    settings = await get_settings(query.message.chat.id)
+
+    if HYPER_MODE:
+        cap_lines = []
+        for file in files:
+            file_link = f"https://t.me/{temp.U_NAME}?start=file_{file.file_id}"
+            cap_lines.append(f"📁 {get_size(file.file_size)} - [{file.file_name}]({file_link})")
+        cap_text = "\n".join(cap_lines)
+        btn = []
+    else:
+        if settings['button']:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"📂[{get_size(file.file_size)}] ➵ {file.file_name}", callback_data=f'files#{file.file_id}'
+                    ),
+                ]
+                for file in files
+            ]
+        else:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                    ),
+                    InlineKeyboardButton(
+                        text=f"{get_size(file.file_size)}", callback_data=f'files_#{file.file_id}'
+                    ),
+                ]
+                for file in files
+            ]
+            
     if 0 < offset <= 10:
         off_set = 0
     elif offset == 0:
@@ -141,13 +129,21 @@ async def next_page(bot, query):
             ]
         )
     try:
-        await query.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(btn)
-        )
+        if HYPER_MODE:
+            await query.edit_message_text(
+                text=cap_text,
+                reply_markup=InlineKeyboardMarkup(btn),
+                parse_mode=enums.ParseMode.MARKDOWN,
+                disable_web_page_preview=True
+            )
+        else:
+            await query.edit_message_reply_markup(
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
     except MessageNotModified:
         pass
-    await query.answer()
 
+    await query.answer()
 
 @Client.on_callback_query(filters.regex(r"^spol")) 
 async def advantage_spoll_choker(bot, query):
@@ -715,7 +711,7 @@ async def auto_filter(client, msg, spoll=False):
         message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"): return  # ignore commands
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if 2 < len(message.text) < 100:
             search = message.text
@@ -729,34 +725,20 @@ async def auto_filter(client, msg, spoll=False):
             return
     else:
         settings = await get_settings(msg.message.chat.id)
-        message = msg.message.reply_to_message  # msg will be callback query
+        message = msg.message.reply_to_message  # msg is CallbackQuery
         search, files, offset, total_results = spoll
-    pre = 'filep' if settings['file_secure'] else 'file'
-    if settings["button"]:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"✨[{get_size(file.file_size)}]➵{file.file_name}", callback_data=f'{pre}#{file.file_id}'
-                ),
-            ]
-            for file in files
-        ]
-    else:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}",
-                    callback_data=f'{pre}#{file.file_id}',
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f'{pre}#{file.file_id}',
-                ),
-            ]
-            for file in files
-        ]
 
-    if offset != "":
+    pre = 'filep' if settings['file_secure'] else 'file'
+
+    if HYPER_MODE:
+        cap_lines = []
+        for file in files:
+            file_link = f"https://t.me/{temp.U_NAME}?start={pre}_{file.file_id}"
+            cap_lines.append(f"✨{get_size(file.file_size)}➵[{file.file_name}]({file_link})")
+        cap_text = "\n".join(cap_lines)
+
+        btn = []
+        if offset != "":
             key = f"{message.chat.id}-{message.id}"
             BUTTONS[key] = search
             req = message.from_user.id if message.from_user else 0
@@ -764,9 +746,43 @@ async def auto_filter(client, msg, spoll=False):
                 InlineKeyboardButton(text=f"📃 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
                 InlineKeyboardButton(text="NEXT ▶️", callback_data=f"next_{req}_{key}_{offset}")
             ])
-    
+        else:
+            btn.append([InlineKeyboardButton(text="📃 1/1", callback_data="pages")])
     else:
-        btn.append([InlineKeyboardButton(text="📃 1/1", callback_data="pages")])
+        if settings["button"]:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"✨[{get_size(file.file_size)}]➵{file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                    ),
+                ]
+                for file in files
+            ]
+        else:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"{file.file_name}",
+                        callback_data=f'{pre}#{file.file_id}',
+                    ),
+                    InlineKeyboardButton(
+                        text=f"{get_size(file.file_size)}",
+                        callback_data=f'{pre}#{file.file_id}',
+                    ),
+                ]
+                for file in files
+            ]
+        if offset != "":
+            key = f"{message.chat.id}-{message.id}"
+            BUTTONS[key] = search
+            req = message.from_user.id if message.from_user else 0
+            btn.append([
+                InlineKeyboardButton(text=f"📃 1/{math.ceil(int(total_results) / 10)}", callback_data="pages"),
+                InlineKeyboardButton(text="NEXT ▶️", callback_data=f"next_{req}_{key}_{offset}")
+            ])
+        else:
+            btn.append([InlineKeyboardButton(text="📃 1/1", callback_data="pages")])
+            
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
@@ -802,28 +818,46 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = script.RESULT_TXT.format(search) #result for group
+        cap = script.RESULT_TXT.format(search)
+
     if imdb and imdb.get('poster'):
         try:
-            delauto = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
-                                      reply_markup=InlineKeyboardMarkup(btn))
+            delauto = await message.reply_photo(
+                photo=imdb.get('poster'),
+                caption=cap[:1024],
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
             await asyncio.sleep(300)
-            await delauto.delete() #del msg auto 10min filter
+            await delauto.delete()
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            delau = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+            delau = await message.reply_photo(
+                photo=poster,
+                caption=cap[:1024],
+                reply_markup=InlineKeyboardMarkup(btn)
+            )
             await asyncio.sleep(300)
-            await delau.delete()#del msg auto 10min filter
+            await delau.delete()
         except Exception as e:
             logger.exception(e)
             audel = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
             await asyncio.sleep(300)
-            await audel.delete()#del msg auto 10min filter
+            await audel.delete()
     else:
-        autodel = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+        if HYPER_MODE:
+            autodel = await message.reply_text(
+                cap_text,
+                reply_markup=InlineKeyboardMarkup(btn),
+                parse_mode=enums.ParseMode.MARKDOWN,
+                disable_web_page_preview=True
+            )
+        else:
+            autodel = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
+
         await asyncio.sleep(300)
-        await autodel.delete()#del msg auto 10min filter
+        await autodel.delete()
+
     if spoll:
         await msg.message.delete()
 
@@ -901,7 +935,6 @@ async def advantage_spell_chok(client, msg):
     )
     await asyncio.sleep(180)
     await spell_check_del.delete()
-
 
 
 async def manual_filters(client, message, text=False):
