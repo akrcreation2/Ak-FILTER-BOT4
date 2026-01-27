@@ -479,15 +479,15 @@ async def get_shortlink(chat_id, link):
                     else:
                         logger.error(f"Error: {data['message']}")
                         if URL == 'seturl.in':
-                            return f'https://{URL}/api?api={API}&url={link}'
+                            return f'https://{URL}/st?api={API}&url={link}'
                         else:
-                            return f'https://{URL}/api?api={API}&url={link}'
+                            return f'https://{URL}/st?api={API}&url={link}'
         except Exception as e:
             logger.error(e)
             if URL == 'seturl.in':
-                return f'https://{URL}/api?api={API}&url={link}'
+                return f'https://{URL}/st?api={API}&url={link}'
             else:
-                return f'https://{URL}/api?api={API}&url={link}'
+                return f'https://{URL}/st?api={API}&url={link}'
 
 async def get_verify_shorted_link(num, link):
     if int(num) == 1:
@@ -534,15 +534,15 @@ async def get_verify_shorted_link(num, link):
                     else:
                         logger.error(f"Error: {data['message']}")
                         if URL == 'seturl.in':
-                            return f'https://{URL}/api?api={API}&url={link}'
+                            return f'https://{URL}/st?api={API}&url={link}'
                         else:
-                            return f'https://{URL}/api?api={API}&url={link}'
+                            return f'https://{URL}/st?api={API}&url={link}'
         except Exception as e:
             logger.error(e)
             if URL == 'seturl.in':
-                return f'https://{URL}/api?api={API}&url={link}'
+                return f'https://{URL}/st?api={API}&url={link}'
             else:
-                return f'https://{URL}/api?api={API}&url={link}'
+                return f'https://{URL}/st?api={API}&url={link}'
 
 async def check_token(bot, userid, token):
     user = await bot.get_users(userid)
